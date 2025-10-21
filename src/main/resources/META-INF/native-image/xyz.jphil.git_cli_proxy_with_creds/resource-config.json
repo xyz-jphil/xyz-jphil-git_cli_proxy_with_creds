@@ -1,0 +1,13 @@
+{
+  "resources":{
+  "includes":[{
+    "pattern":"\\QMETA-INF/services/jakarta.xml.bind.JAXBContextFactory\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/java.lang.System$LoggerFinder\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/javax.xml.parsers.SAXParserFactory\\E"
+  }, {
+    "pattern":"java.xml:\\Qjdk/xml/internal/jdkcatalog/JDKCatalog.xml\\E"
+  }]},
+  "bundles":[]
+}

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.github.xyz-jphil</groupId>
+    <artifactId>xyz-jphil-git_cli_proxy_with_creds</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <description>Git CLI Proxy with Credentials: Context-aware Git command proxy that automatically selects credentials based on directory patterns</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <picocli.version>4.7.6</picocli.version>
+        <junit.version>5.11.0</junit.version>
+        <native.maven.plugin.version>0.10.3</native.maven.plugin.version>
+    </properties>
+
+    <dependencies>
+        <!-- PicoCLI for command line parsing -->
+        <dependency>
+            <groupId>info.picocli</groupId>
+            <artifactId>picocli</artifactId>
+            <version>${picocli.version}</version>
+        </dependency>
+
+        <!-- JAXB for XML parsing (required in Java 11+) -->
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>4.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>4.0.5</version>
+            <scope>runtime</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.graalvm.nativeimage</groupId>
+            <artifactId>library-support</artifactId>
+            <version>23.0.1</version> <!-- Use a version compatible with your GraalVM installation -->
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- JUnit for testing -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Maven compiler plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>info.picocli</groupId>
+                            <artifactId>picocli-codegen</artifactId>
+                            <version>${picocli.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                    <compilerArgs>
+                        <arg>-Aproject=${project.groupId}/${project.artifactId}</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+
+            <!-- Maven JAR plugin with manifest -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.4.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>xyz.jphil.git_cli_proxy_with_creds.GitProxyMain</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <!-- Maven Shade plugin for uber jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.6.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>xyz.jphil.git_cli_proxy_with_creds.GitProxyMain</mainClass>
+                                </transformer>
+                            </transformers>
+                            <finalName>${project.artifactId}-${project.version}-uber</finalName>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <profiles>
+        <!-- GraalVM Native Image profile -->
+        <profile>
+            <id>native</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.graalvm.buildtools</groupId>
+                        <artifactId>native-maven-plugin</artifactId>
+                        <version>${native.maven.plugin.version}</version>
+                        <extensions>true</extensions>
+                        <executions>
+                            <!-- Build git.exe -->
+                            <execution>
+                                <id>build-git-native</id>
+                                <goals>
+                                    <goal>compile-no-fork</goal>
+                                </goals>
+                                <phase>package</phase>
+                                <configuration>
+                                    <imageName>git</imageName>
+                                    <mainClass>xyz.jphil.git_cli_proxy_with_creds.GitProxyMain</mainClass>
+                                    <buildArgs>
+                                        <buildArg>--no-fallback</buildArg>
+                                        <buildArg>-H:+ReportExceptionStackTraces</buildArg>
+                                    </buildArgs>
+                                </configuration>
+                            </execution>
+                            <!-- Build gh.exe -->
+                            <execution>
+                                <id>build-gh-native</id>
+                                <goals>
+                                    <goal>compile-no-fork</goal>
+                                </goals>
+                                <phase>package</phase>
+                                <configuration>
+                                    <imageName>gh</imageName>
+                                    <mainClass>xyz.jphil.git_cli_proxy_with_creds.GhProxyMain</mainClass>
+                                    <buildArgs>
+                                        <buildArg>--no-fallback</buildArg>
+                                        <buildArg>-H:+ReportExceptionStackTraces</buildArg>
+                                    </buildArgs>
+                                </configuration>
+                            </execution>
+                            <!-- Build generic executable (code not fully written) -->
+                            <execution>
+                                <id>build-native</id>
+                                <goals>
+                                    <goal>compile-no-fork</goal>
+                                </goals>
+                                <phase>package</phase>
+                                <configuration>
+                                    <imageName>gh</imageName>
+                                    <mainClass>xyz.jphil.git_cli_proxy_with_creds.GenericMain</mainClass>
+                                    <buildArgs>
+                                        <buildArg>--no-fallback</buildArg>
+                                        <buildArg>-H:+ReportExceptionStackTraces</buildArg>
+                                    </buildArgs>
+                                </configuration>
+                            </execution>
+                        
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>

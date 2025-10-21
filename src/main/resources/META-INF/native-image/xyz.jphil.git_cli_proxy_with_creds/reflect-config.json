@@ -1,0 +1,131 @@
+[
+{
+  "name":"com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"jakarta.xml.bind.annotation.XmlElement",
+  "methods":[{"name":"type","parameterTypes":[] }]
+},
+{
+  "name":"java.lang.Object",
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"getAccountList","parameterTypes":[] }, {"name":"getAccounts","parameterTypes":[] }, {"name":"getActivationRules","parameterTypes":[] }, {"name":"getBinaries","parameterTypes":[] }, {"name":"getDebugSettings","parameterTypes":[] }, {"name":"getDesc","parameterTypes":[] }, {"name":"getDescription","parameterTypes":[] }, {"name":"getGh","parameterTypes":[] }, {"name":"getGhCredentials","parameterTypes":[] }, {"name":"getGit","parameterTypes":[] }, {"name":"getGitCredentials","parameterTypes":[] }, {"name":"getId","parameterTypes":[] }, {"name":"getLogs","parameterTypes":[] }, {"name":"getName","parameterTypes":[] }, {"name":"getPath","parameterTypes":[] }, {"name":"getPathParents","parameterTypes":[] }, {"name":"getPathRegexes","parameterTypes":[] }, {"name":"getPattern","parameterTypes":[] }, {"name":"getShowAccountSelectionInfo","parameterTypes":[] }, {"name":"getSshKey","parameterTypes":[] }, {"name":"getToken","parameterTypes":[] }, {"name":"getUserEmail","parameterTypes":[] }, {"name":"getUserName","parameterTypes":[] }, {"name":"isEnabled","parameterTypes":[] }]
+},
+{
+  "name":"org.glassfish.jaxb.core.v2.model.nav.ReflectionNavigator",
+  "methods":[{"name":"getInstance","parameterTypes":[] }]
+},
+{
+  "name":"org.glassfish.jaxb.runtime.v2.JAXBContextFactory"
+},
+{
+  "name":"org.glassfish.jaxb.runtime.v2.runtime.property.ArrayElementLeafProperty",
+  "queryAllPublicConstructors":true
+},
+{
+  "name":"org.glassfish.jaxb.runtime.v2.runtime.property.ArrayElementNodeProperty",
+  "queryAllPublicConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":["org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl","org.glassfish.jaxb.runtime.v2.model.runtime.RuntimeElementPropertyInfo"] }]
+},
+{
+  "name":"org.glassfish.jaxb.runtime.v2.runtime.property.ArrayReferenceNodeProperty",
+  "queryAllPublicConstructors":true
+},
+{
+  "name":"org.glassfish.jaxb.runtime.v2.runtime.property.SingleElementLeafProperty",
+  "queryAllPublicConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":["org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl","org.glassfish.jaxb.runtime.v2.model.runtime.RuntimeElementPropertyInfo"] }]
+},
+{
+  "name":"org.glassfish.jaxb.runtime.v2.runtime.property.SingleElementNodeProperty",
+  "queryAllPublicConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":["org.glassfish.jaxb.runtime.v2.runtime.JAXBContextImpl","org.glassfish.jaxb.runtime.v2.model.runtime.RuntimeElementPropertyInfo"] }]
+},
+{
+  "name":"org.glassfish.jaxb.runtime.v2.runtime.property.SingleMapNodeProperty",
+  "queryAllPublicConstructors":true
+},
+{
+  "name":"org.glassfish.jaxb.runtime.v2.runtime.property.SingleReferenceNodeProperty",
+  "queryAllPublicConstructors":true
+},
+{
+  "name":"xyz.jphil.git_cli_proxy_with_creds.model.Account",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"xyz.jphil.git_cli_proxy_with_creds.model.Account$ActivationRules",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"xyz.jphil.git_cli_proxy_with_creds.model.Account$GhCredentials",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"xyz.jphil.git_cli_proxy_with_creds.model.Account$GitCredentials",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"xyz.jphil.git_cli_proxy_with_creds.model.Account$PathParent",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"xyz.jphil.git_cli_proxy_with_creds.model.Account$PathRegex",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"xyz.jphil.git_cli_proxy_with_creds.model.DebugSettings",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"xyz.jphil.git_cli_proxy_with_creds.model.DebugSettings$Logs",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"xyz.jphil.git_cli_proxy_with_creds.model.DebugSettings$ShowAccountSelectionInfo",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"xyz.jphil.git_cli_proxy_with_creds.model.GitProxyConfig",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"xyz.jphil.git_cli_proxy_with_creds.model.GitProxyConfig$Accounts",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"xyz.jphil.git_cli_proxy_with_creds.model.GitProxyConfig$Binaries",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"xyz.jphil.git_cli_proxy_with_creds.model.GitProxyConfig$BinaryPath",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+}
+]
