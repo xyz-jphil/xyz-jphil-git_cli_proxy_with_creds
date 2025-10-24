@@ -11,6 +11,12 @@ import java.util.Map;
 
 public class ProxyCore {
 
+    // Version identifier: YYYYMMDD_HHMM format (UTC)
+    private static final String VERSION = "20251024_1330";
+
+    // Debug flag - set to true to see command execution details
+    private static final boolean DEBUG = false;
+
     public enum CommandType {
         GIT, GH
     }
@@ -69,6 +75,7 @@ public class ProxyCore {
 
         PrintStream out = selectionInfo.getNoArgsInvocation() == OutputMode.STDERR ? System.err : System.out;
 
+        out.println("Git CLI Proxy Version: " + VERSION);
         if (matchResult != null) {
             out.println(matchResult.format());
         } else {
@@ -120,9 +127,11 @@ public class ProxyCore {
             Account account = matchResult.getAccount();
             Account.GitCredentials gitCreds = account.getGitCredentials();
 
-            // Add SSH configuration
+            // Add SSH configuration with properly escaped path to handle spaces
+            // Using escaped quotes so they survive git's shell evaluation
             command.add("-c");
-            command.add("core.sshCommand=ssh -i " + gitCreds.getSshKey());
+            String sshKeyPath = gitCreds.getSshKey().replace("\\", "/");
+            command.add("core.sshCommand=ssh -i \\\"" + sshKeyPath + "\\\"");
 
             // Add user name and email
             command.add("-c");
@@ -139,6 +148,12 @@ public class ProxyCore {
 
         pb.command(command);
         pb.inheritIO(); // Pass through stdin/stdout/stderr
+
+        // Debug: Print the command being executed
+        if (DEBUG) {
+            System.err.println("[Git Proxy v" + VERSION + "] Executing command:");
+            System.err.println("  " + String.join(" ", command));
+        }
 
         Process process = pb.start();
         return process.waitFor();

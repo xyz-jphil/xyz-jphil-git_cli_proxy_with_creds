@@ -13,16 +13,12 @@ if %ERRORLEVEL% NEQ 0 (
     exit /b %ERRORLEVEL%
 )
 
-echo [3/3] Testing executables...
+echo [3/3] Testing executable...
 echo.
 echo Testing git.exe:
 target\git.exe
 
 echo.
-echo Testing gh.exe:
-target\gh.exe
-
-echo.
 echo Build completed successfully!
-echo Executables created:
-dir target\*.exe /b
+echo Executable created:
+dir target\git.exe /b

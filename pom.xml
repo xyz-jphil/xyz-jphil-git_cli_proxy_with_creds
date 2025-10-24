@@ -146,38 +146,7 @@
                                     </buildArgs>
                                 </configuration>
                             </execution>
-                            <!-- Build gh.exe -->
-                            <execution>
-                                <id>build-gh-native</id>
-                                <goals>
-                                    <goal>compile-no-fork</goal>
-                                </goals>
-                                <phase>package</phase>
-                                <configuration>
-                                    <imageName>gh</imageName>
-                                    <mainClass>xyz.jphil.git_cli_proxy_with_creds.GhProxyMain</mainClass>
-                                    <buildArgs>
-                                        <buildArg>--no-fallback</buildArg>
-                                        <buildArg>-H:+ReportExceptionStackTraces</buildArg>
-                                    </buildArgs>
-                                </configuration>
-                            </execution>
-                            <!-- Build generic executable (code not fully written) -->
-                            <execution>
-                                <id>build-native</id>
-                                <goals>
-                                    <goal>compile-no-fork</goal>
-                                </goals>
-                                <phase>package</phase>
-                                <configuration>
-                                    <imageName>gh</imageName>
-                                    <mainClass>xyz.jphil.git_cli_proxy_with_creds.GenericMain</mainClass>
-                                    <buildArgs>
-                                        <buildArg>--no-fallback</buildArg>
-                                        <buildArg>-H:+ReportExceptionStackTraces</buildArg>
-                                    </buildArgs>
-                                </configuration>
-                            </execution>
+                            <!-- Build gh.exe and generic executable - DISABLED for now (uncomment to re-enable) -->
                         
                         </executions>
                     </plugin>
